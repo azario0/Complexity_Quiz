@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Complexity {{ complexity }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Complexity Level: {{ complexity }}</h1>
+        <p>How many iterations will this code run?</p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flashes">
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <pre><code>{{ quiz.code }}</code></pre>
+
+        <form action="{{ url_for('submit') }}" method="post">
+            <input type="hidden" name="correct_choice" value="{{ quiz.correct_choice }}">
+            <input type="hidden" name="complexity" value="{{ complexity }}">
+            <div class="choices">
+                {% for choice in quiz.choices %}
+                    <button type="submit" name="choice" value="{{ choice }}">{{ choice }}</button>
+                {% endfor %}
+            </div>
+        </form>
+        <a href="/" class="back-link">Change Complexity</a>
+    </div>
+</body>
+</html>
