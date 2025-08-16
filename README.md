@@ -68,7 +68,7 @@ Follow these instructions to get a copy of the project up and running on your lo
 
     Then, modify `app.py` to load this key securely instead of hardcoding it. Replace:
     ```python
-    genai.configure(api_key="AIzaSyDviegMUvTr2cYL4KFSLIRnQPyqcPyD13w")
+    genai.configure(api_key="YOUR_KEY")
     ```
     with:
     ```python
